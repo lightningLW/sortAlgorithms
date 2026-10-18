@@ -9,19 +9,11 @@
 
 #include "sortAlgorithms.h"
 
-static void swap(int* aPtr, int* bPtr)
-{
-    int temp = *aPtr;
-    *aPtr = *bPtr;
-    *bPtr = temp;
-    return;
-}
-
 void selectionSort(int *src, size_t n, std::function<bool(int, int)> comp)
 {
-    if (n <= 0)
+    if (n == 0)
     {
-        std::cerr << "Fault: "<< __FUNCTION__ << " n <= 0 \n";
+        std::cerr << "Fault: "<< __FUNCTION__ << " n = 0 \n";
         return;
     }
     for (int i = 0; i != n - 1; ++i)

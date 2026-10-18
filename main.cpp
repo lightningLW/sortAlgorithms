@@ -3,7 +3,9 @@
 
 int main(void)
 {
-    int arr[5] = {5, 10, 1, 0, 10};
+    int arr[5] = {5, 10, 3, 0, 1};
+
+#if 0 //@选择排序测试
     for (int i = 0; i != 5; ++i)
     {
         std::cout << arr[i] << '\t';
@@ -15,5 +17,20 @@ int main(void)
         std::cout << arr[i] << '\t';
     }
     std::cout << std::endl;
+#endif //!@选择排序测试
+
+
+    for (int i = 0; i != 5; ++i)
+    {
+        std::cout << arr[i] << '\t';
+    }
+    std::cout << std::endl;
+    insertSort(arr, 5);
+    for (int i = 0; i != 5; ++i)
+    {
+        std::cout << arr[i] << '\t';
+    }
+    std::cout << std::endl;
+
     return 0;
 }

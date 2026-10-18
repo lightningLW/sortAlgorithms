@@ -27,6 +27,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)   # 配套常用，很多人漏掉
 add_executable(MyEXExxxx
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/src/selectionSort.cpp
+    ${PROJECT_SOURCE_DIR}/src/insertSort.cpp
 )
 # !@指定 可执行文件
 
