@@ -1,0 +1,7 @@
+build/
+.DS*
+cmakeBuild/
+.cache/
+compile_commands.*
+claude*
+注释头.h
