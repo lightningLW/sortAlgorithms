@@ -25,11 +25,12 @@ void insertSort(int* src, size_t n, std::function<bool(int, int)> comp)
                 if (j == 0)
                 {
                     int temp = *(src + i);
-                    int* temp_ptr = new int[i - j];
-                    memcpy(temp_ptr, src + j, sizeof(int) * (i - j));
-                    memcpy(src + j + 1, temp_ptr, sizeof(int) * (i - j));
+                    // int* temp_ptr = new int[i - j];
+                    // memcpy(temp_ptr, src + j, sizeof(int) * (i - j));
+                    // memcpy(src + j + 1, temp_ptr, sizeof(int) * (i - j));
+                    memmove(src + j + 1, src + j, sizeof(int) * (i - j));
                     *(src + j) = temp;
-                    delete [] temp_ptr;
+                    // delete [] temp_ptr;
                 }
                 continue;
             }
@@ -40,16 +41,11 @@ void insertSort(int* src, size_t n, std::function<bool(int, int)> comp)
                     break;
                 }
                 int temp = *(src + i);
-                int* temp_ptr = new int[i - j - 1];
-                memcpy(temp_ptr, src + j + 1, sizeof(int) * (i - j - 1));
-                memcpy(src + j + 2, temp_ptr, sizeof(int) * (i - j - 1));
+                memmove(src + j + 2, src + j + 1, sizeof(int) * (i - j - 1));
                 *(src + j + 1) = temp;
                 break;
             }
 
-            // int temp = *(src + i);
-            // memmove(src + j + 1, src + j, sizeof(int) * (i - j));
-            // *(src + j + 1) = temp;
         }
     }
     return;
