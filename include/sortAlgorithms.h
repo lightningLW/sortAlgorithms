@@ -63,7 +63,6 @@ void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp = std
 * @return: 
 * @note: 
 ******************************************************/
-//TODO: shell sort
 void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::less<int>());
 
 #endif // !__SORTALGORITHMS_H__

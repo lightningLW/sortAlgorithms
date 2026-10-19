@@ -44,13 +44,11 @@ int main(void)
     std::cout << std::endl;
 #endif // !@插入排序测试
 
+    // @希尔排序
     printArr(arr, 12);
-    insertSort(arr, 12, 6);
+    shellSort(arr, 12, std::greater<int>());
     printArr(arr, 12);
-    insertSort(arr, 12, 3);
-    printArr(arr, 12);
-    insertSort(arr, 12, 1);
-    printArr(arr, 12);
+    // !@希尔排序
 
     return 0;
 }
