@@ -28,6 +28,7 @@ add_executable(MyEXExxxx
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/src/selectionSort.cpp
     ${PROJECT_SOURCE_DIR}/src/insertSort.cpp
+    ${PROJECT_SOURCE_DIR}/src/shellsort.cpp
 )
 # !@指定 可执行文件
 

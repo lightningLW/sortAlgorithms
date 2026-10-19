@@ -55,4 +55,15 @@ void insertSort(int* src, size_t n, size_t gap = 1, std::function<bool(int, int)
 ******************************************************/
 void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp = std::less<int>());
 
+/******************************************************
+* @brife: 希尔排序
+* @param src: 首地址
+* @param n: 待排序序列长度
+* @param comp: 关系运算
+* @return: 
+* @note: 
+******************************************************/
+//TODO: shell sort
+void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::less<int>());
+
 #endif // !__SORTALGORITHMS_H__
