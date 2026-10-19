@@ -20,13 +20,13 @@ void insertSort(int* src, size_t n, size_t gap, std::function<bool(int, int)> co
     {
         for (int i = g + gap; i < n; i += gap)
         {
-            int idx = i;
+            int temp = *(src + i);
             for(int j = i - gap; j >= 0; j -= gap)
             {
-                if (comp(*(src + idx), *(src + j)))
+                if (comp(temp, *(src + j)))
                 {
-                    swap(src + idx, src + j);
-                    idx = j;
+                    *(src + j + gap) = std::move(*(src + j));
+                    *(src + j) = std::move(temp);
                 }
                 else
                 {

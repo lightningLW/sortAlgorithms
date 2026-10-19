@@ -1,9 +1,20 @@
 #include <iostream>
 #include "sortAlgorithms.h"
 
+void printArr(const int* arr, std::size_t n)
+{
+    std::cout << "arr: ";
+    for (int i = 0; i != n; ++i)
+    {
+        std::cout << *(arr + i) << '\t';
+    }
+    std::cout << std::endl;
+    return;
+}
+
 int main(void)
 {
-    int arr[5] = {0, 10, 3, 0, 10};
+    int arr[12] = {5, 10, 0, 3, 10, 11, 2, 3, 15, 8, 0, 6};
 
 #if 0 //@选择排序测试
     for (int i = 0; i != 5; ++i)
@@ -20,18 +31,26 @@ int main(void)
 #endif //!@选择排序测试
 
 #if 0 // @插入排序测试
-    for (int i = 0; i != 5; ++i)
+    for (int i = 0; i != 12; ++i)
     {
         std::cout << arr[i] << '\t';
     }
     std::cout << std::endl;
-    insertSort(arr, 5, std::greater<int>());
-    for (int i = 0; i != 5; ++i)
+    insertSort(arr, 11, 3);
+    for (int i = 0; i != 12; ++i)
     {
         std::cout << arr[i] << '\t';
     }
     std::cout << std::endl;
 #endif // !@插入排序测试
+
+    printArr(arr, 12);
+    insertSort(arr, 12, 6);
+    printArr(arr, 12);
+    insertSort(arr, 12, 3);
+    printArr(arr, 12);
+    insertSort(arr, 12, 1);
+    printArr(arr, 12);
 
     return 0;
 }
