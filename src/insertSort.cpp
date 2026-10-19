@@ -1,15 +1,44 @@
-/**
+/***********************************************************************************************************************
 * @file: insertSort.cpp
 * @brife: 插入排序实现文件
 * @date: 2026-10-18
-* @update:
+* @update: 2026-10-19
 * @author: lightningLW
-* @note:
-*/
+* @note: 为了使其应用于shell sort, 不采用: 一次移动连续内存; 而是采用逐一交换元素
+***********************************************************************************************************************/
 
 #include "sortAlgorithms.h"
 
-void insertSort(int* src, size_t n, std::function<bool(int, int)> comp)
+void insertSort(int* src, size_t n, size_t gap, std::function<bool(int, int)> comp)
+{
+    if (n == 0 || gap == 0)
+    {
+        std::cerr << "Fault: In " << __FUNCTION__ << " n == 0 || gap == 0!\n"; 
+        return;
+    }
+    for (int g = 0; g != gap; ++g)
+    {
+        for (int i = g + gap; i < n; i += gap)
+        {
+            int idx = i;
+            for(int j = i - gap; j >= 0; j -= gap)
+            {
+                if (comp(*(src + idx), *(src + j)))
+                {
+                    swap(src + idx, src + j);
+                    idx = j;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+    return;
+}
+
+void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp)
 {
     if (n == 0)
     {
