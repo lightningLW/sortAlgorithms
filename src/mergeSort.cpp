@@ -13,58 +13,65 @@
 * @brife: 归并
 * @param src: 首地址
 * @param left: 待归并的数组的左index
-* @param mid: 待归并数组的中间index
 * @param right: 待归并数组的右边index
 * @return: 
 * @note: 左右数组的划分 [left, mid), [mid, right) 且 [left, mid), [mid, right)分别有序
 ******************************************************/
 static void merge_(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>())
 {
-    size_t mid = left + ((right - left) >> 1);
-    int tempArr[right];
-    memcpy(tempArr, src, sizeof(int) * (right));
-    size_t rgArr_curIdx = mid;
-    size_t tmpleft = left;
-    for (size_t lfArr_idx = left; lfArr_idx != mid; ++lfArr_idx)
+    size_t len = right - left;
+    size_t mid = len >> 1;
+    size_t rightIdx_beg = mid;
+    bool done = false;
+    int arr[len];
+    memcpy(arr, src + left, len * sizeof(int));
+
+    for (int i = 0; i != mid; ++i)
     {
-        int lfArr_value = *(tempArr + lfArr_idx);
-        for (size_t rgArr_idx = rgArr_curIdx; rgArr_idx != right; ++rgArr_idx)
+        int leftVal = *(arr + i);
+        for (int j = rightIdx_beg; j != len; ++j)
         {
-            int rgArr_value = *(tempArr + rgArr_idx);
-            if (comp(lfArr_value, rgArr_value))
+            int rightVal = *(arr + j);
+            if (comp(leftVal, rightVal))
             {
-                *(src + (tmpleft++)) = lfArr_value;
-                if (lfArr_idx == mid - 1)
+                *(src + (left++)) = leftVal;
+                if (i == mid - 1)
                 {
-                    //证明左边的数组已经全部排序完了
-                    memcpy(src + tmpleft, tempArr + rgArr_idx, sizeof(int) * (right - rgArr_idx));
+                    //证明是左边数组的最后一个元素, 将右边数组剩余元素直接复制到原始数组
+                    memcpy(src + left, arr + j, (len - j) * sizeof(int));
+
                 }
                 break;
             }
             else
             {
-                *(src + (tmpleft++)) = rgArr_value;
-                ++rgArr_curIdx;
+                *(src + (left++)) = rightVal;
+                ++rightIdx_beg;
+                if (j == len - 1)
+                {
+                    //证明右边的数组的最后一个元素, 将左边数组剩余元素直接复制到原始数组
+                    memcpy(src + left, arr + i, (mid - i) * sizeof(int));
+                    done = true;
+                }
             }
-            if (rgArr_curIdx == right)
-            {
-                //证明右数组全部排完了 
-                memcpy(src + tmpleft, tempArr + lfArr_idx, sizeof(int) * (mid - lfArr_idx));
-                break;
-            }
+        }
+        if (rightIdx_beg == len)
+        {
+            break;
         }
     }
 }
 
-void mergeSort(int *src, size_t left, size_t right)
+
+void mergeSort(int *src, size_t left, size_t right, std::function<bool (int, int)> comp)
 {
     size_t len = right - left;
-    size_t mid = (right - left) >> 1;
-    if (left + 2 <= right)
+    size_t mid = (right + left) >> 1;
+    if (right - left <= 1)
     {
-        // mergeSort(src, left, mid);
-        // mergeSort(src, mid, right);
-        // merge_(src, left, right);
+        return;
     }
-    merge_(src, left, right);
+    mergeSort(src, left, mid, comp);
+    mergeSort(src, mid, right, comp);
+    merge_(src, left, right, comp);
 }
