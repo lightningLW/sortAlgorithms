@@ -65,4 +65,14 @@ void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp = std
 ******************************************************/
 void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::less<int>());
 
+//TODO: merge sort
+/******************************************************
+* @brife: 希尔排序
+* @param src: 首地址
+* @param n: 待排序序列长度
+* @param comp: 关系运算
+* @return: 
+* @note: 
+******************************************************/
+void mergeSort(int* src, size_t left, size_t mid, size_t right);
 #endif // !__SORTALGORITHMS_H__
