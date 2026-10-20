@@ -14,7 +14,8 @@ void printArr(const int* arr, std::size_t n)
 
 int main(void)
 {
-    int arr[12] = {5, 10, 0, 3, 10, 11, 2, 3, 15, 8, 0, 6};
+    // int arr[12] = {5, 10, 0, 3, 10, 11, 2, 3, 15, 8, 0, 6};
+    int arr[12] = {5, 10, 11, 19, 20, 20, 2, 3, 5, 5, 5, 5};
 
 #if 0 //@选择排序测试
     for (int i = 0; i != 5; ++i)
@@ -45,10 +46,16 @@ int main(void)
 #endif // !@插入排序测试
 
     // @希尔排序
-    printArr(arr, 12);
-    shellSort(arr, 12, std::greater<int>());
-    printArr(arr, 12);
+    // printArr(arr, 12);
+    // shellSort(arr, 12, std::greater<int>());
+    // printArr(arr, 12);
     // !@希尔排序
+
+    // @归并排序
+    printArr(arr, 12);
+    mergeSort(arr, 3, 9);
+    printArr(arr, 12);
+    // !@归并排序
 
     return 0;
 }

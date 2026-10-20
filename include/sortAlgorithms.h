@@ -74,5 +74,5 @@ void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::les
 * @return: 
 * @note: 
 ******************************************************/
-void mergeSort(int* src, size_t left, size_t mid, size_t right);
+void mergeSort(int* src, size_t left, size_t right);
 #endif // !__SORTALGORITHMS_H__
