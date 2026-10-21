@@ -52,9 +52,10 @@ int main(void)
     // !@希尔排序
 
     // @归并排序
-    // printArr(arr, 12);
-    // mergeSort(arr, 0, 12, std::greater<int>());
-    // printArr(arr, 12);
+    printArr(arr, 12);
+    mergeSort_recursive(arr, 0, 12, std::greater<int>());
+    // insertSort_(arr, 0, 12);
+    printArr(arr, 12);
     // !@归并排序
 
     return 0;

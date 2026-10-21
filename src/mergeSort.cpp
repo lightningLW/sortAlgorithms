@@ -67,8 +67,9 @@ void mergeSort_recursive(int *src, size_t left, size_t right, std::function<bool
 {
     size_t len = right - left;
     size_t mid = (right + left) >> 1;
-    if (right - left <= 1)
+    if (right - left <= 3)
     {
+        insertSort_(src, left, right, comp);
         return;
     }
     mergeSort_recursive(src, left, mid, comp);

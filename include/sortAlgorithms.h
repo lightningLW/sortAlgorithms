@@ -76,4 +76,6 @@ void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::les
 ******************************************************/
 void mergeSort_recursive(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
 
+void insertSort_(int* src, size_t left, size_t right, std::function<bool(int, int)> comp = std::less<int>());
+
 #endif // !__SORTALGORITHMS_H__

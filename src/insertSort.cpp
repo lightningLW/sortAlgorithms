@@ -79,3 +79,29 @@ void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp)
     }
     return;
 }
+
+void insertSort_(int* src, size_t left, size_t right, std::function<bool(int, int)> comp)
+{
+    size_t len = right -left;
+    if (len <= 1)
+    {
+        return;
+    }
+    for (size_t i = left + 1; i != right; ++i)
+    {
+        int curVal = *(src + i);
+        for (size_t j = i - 1; j != left - 1; --j)
+        {
+            if (comp(curVal, *(src + j)))
+            {
+                //交换
+                *(src + j + 1) = *(src + j); //基本类型没必要std::move
+                *(src + j) = curVal;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+}
