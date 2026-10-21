@@ -66,7 +66,7 @@ void insertSort_mem(int* src, size_t n, std::function<bool(int, int)> comp = std
 void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::less<int>());
 
 /******************************************************
-* @brife: 归并排序
+* @brife: 归并排序: 自顶向下递归(recuisive)实现
 * @param src: 首地址
 * @param left: 待排序序列[左索引
 * @param right: 待排序序列右索引)
@@ -74,6 +74,6 @@ void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::les
 * @return: 
 * @note: [left, right)
 ******************************************************/
-void mergeSort(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
+void mergeSort_recursive(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
 
 #endif // !__SORTALGORITHMS_H__

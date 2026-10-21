@@ -63,7 +63,7 @@ static void merge_(int* src, size_t left, size_t right, std::function<bool (int,
 }
 
 
-void mergeSort(int *src, size_t left, size_t right, std::function<bool (int, int)> comp)
+void mergeSort_recursive(int *src, size_t left, size_t right, std::function<bool (int, int)> comp)
 {
     size_t len = right - left;
     size_t mid = (right + left) >> 1;
@@ -71,7 +71,7 @@ void mergeSort(int *src, size_t left, size_t right, std::function<bool (int, int
     {
         return;
     }
-    mergeSort(src, left, mid, comp);
-    mergeSort(src, mid, right, comp);
+    mergeSort_recursive(src, left, mid, comp);
+    mergeSort_recursive(src, mid, right, comp);
     merge_(src, left, right, comp);
 }
