@@ -24,7 +24,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)   # 配套常用，很多人漏掉
 # !@指定 语言 标准
 
 # @指定 可执行文件
-add_executable(MyEXExxxx
+add_executable(a.out
     ${PROJECT_SOURCE_DIR}/main.cpp
     ${PROJECT_SOURCE_DIR}/src/selectionSort.cpp
     ${PROJECT_SOURCE_DIR}/src/insertSort.cpp
@@ -34,7 +34,7 @@ add_executable(MyEXExxxx
 # !@指定 可执行文件
 
 # @头文件路径
-target_include_directories(MyEXExxxx
+target_include_directories(a.out
     PRIVATE                                                                     
         ${PROJECT_SOURCE_DIR}/include
         # ${PROJRECT_SOURCE_DIR}/third_party/include

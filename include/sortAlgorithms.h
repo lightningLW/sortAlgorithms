@@ -87,4 +87,15 @@ void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::les
 ******************************************************/
 void mergeSort_recursive(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
 
+/******************************************************
+* @brife: 归并排序: 自底向上归并排序
+* @param src: 首地址
+* @param left: 待排序序列[左索引
+* @param right: 待排序序列右索引)
+* @param comp: 关系运算
+* @return: 
+* @note: [left, right)
+******************************************************/
+void mergeSortBU(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
+
 #endif // !__SORTALGORITHMS_H__

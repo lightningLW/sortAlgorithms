@@ -53,7 +53,9 @@ int main(void)
 
     // @归并排序
     printArr(arr, 12);
-    mergeSort_recursive(arr, 6, 12, std::greater<int>());
+    // mergeSort_recursive(arr, 6, 12, std::greater<int>());
+    // mergeSortBU(arr, 0, 12, std::greater<int>());
+    mergeSortBU(arr, 5, 11, std::greater<int>());
     // insertSort_(arr, 0, 12);
     printArr(arr, 12);
     // !@归并排序
