@@ -2,7 +2,7 @@
 * @file: sortAlgorithms.h
 * @brife: 学习过程中, 各类排序算法的声明
 * @date: 2026-10-18
-* @update: 2026-10-19
+* @update: 2026-10-21
 * @author: lightningLW
 * @note: 
 ***********************************************************************************************************************/
@@ -46,6 +46,17 @@ void selectionSort(int* src, size_t n, std::function<bool(int, int)> comp = std:
 void insertSort(int* src, size_t n, size_t gap = 1, std::function<bool(int, int)> comp = std::less<int>());
 
 /******************************************************
+* @brife: 插入排序: 应用于 mergeSort_recursive排序
+* @param src: 首地址
+* @param left: 待排序序列[左索引
+* @param right: 待排序序列右索引)
+* @param comp: 关系运算
+* @return: 
+* @note: [left, right), 应该可以在 insertSort上修改, 但是懒着整了, 索引重新整
+******************************************************/
+void insertSort_(int* src, size_t left, size_t right, std::function<bool(int, int)> comp = std::less<int>());
+
+/******************************************************
 * @brife: 插入排序
 * @param src: 首地址
 * @param n: 待排序序列长度
@@ -75,7 +86,5 @@ void shellSort(int* src, size_t n, std::function<bool(int, int)> comp = std::les
 * @note: [left, right)
 ******************************************************/
 void mergeSort_recursive(int* src, size_t left, size_t right, std::function<bool (int, int)> comp = std::less<int>());
-
-void insertSort_(int* src, size_t left, size_t right, std::function<bool(int, int)> comp = std::less<int>());
 
 #endif // !__SORTALGORITHMS_H__
