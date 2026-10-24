@@ -52,13 +52,19 @@ int main(void)
     // !@希尔排序
 
     // @归并排序
-    printArr(arr, 12);
+    // printArr(arr, 12);
     // mergeSort_recursive(arr, 6, 12, std::greater<int>());
     // mergeSortBU(arr, 0, 12, std::greater<int>());
-    mergeSortBU(arr, 5, 11, std::greater<int>());
+    // mergeSortBU(arr, 5, 11, std::greater<int>());
     // insertSort_(arr, 0, 12);
-    printArr(arr, 12);
+    // printArr(arr, 12);
     // !@归并排序
+
+    // @ 快速排序
+    printArr(arr, 12);
+    quickSort_crudity(arr, 2, 11, 0);
+    printArr(arr, 12);
+    // !@ 快速排序
 
     return 0;
 }
