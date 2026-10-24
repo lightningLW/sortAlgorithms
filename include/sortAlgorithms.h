@@ -110,4 +110,16 @@ void mergeSortBU(int* src, size_t left, size_t right, std::function<bool (int, i
 ******************************************************/
 void quickSort_crudity(int* src, size_t leftIdx, size_t rightIdx, size_t partitionIdx,
                        std::function<bool (int, int)> comp = std::less<int>());
+
+/******************************************************
+* @brife: 快速排序
+* @param src: 首地址
+* @param leftIdx: 待排序序列[左索引
+* @param rightIdx: 待排序序列右索引)
+* @param comp: 关系运算
+* @return: 
+* @note: [left, right)
+******************************************************/
+void quickSort(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>());
+
 #endif // !__SORTALGORITHMS_H__

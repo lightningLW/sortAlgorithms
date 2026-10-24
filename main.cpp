@@ -14,7 +14,7 @@ void printArr(const int* arr, std::size_t n)
 
 int main(void)
 {
-    int arr[12] = {5, 10, 0, 3, 10, 11, 2, 3, 15, 8, 0, 6};
+    // int arr[12] = {5, 10, 0, 3, 10, 11, 2, 3, 15, 8, 0, 6};
     // int arr[12] = {5, 10, 11, 19, 20, 20, 2, 3, 5, 5, 5, 5};
 
 #if 0 //@选择排序测试
@@ -61,9 +61,10 @@ int main(void)
     // !@归并排序
 
     // @ 快速排序
-    printArr(arr, 12);
-    quickSort_crudity(arr, 2, 11, 0);
-    printArr(arr, 12);
+    int arr[13] = {5, 10, 0, 3, 10, 11, 4, 2, 3, 15, 8, 0, 6};
+    printArr(arr, 13);
+    quickSort(arr, 0, 13, std::greater<int>());
+    printArr(arr, 13);
     // !@ 快速排序
 
     return 0;
