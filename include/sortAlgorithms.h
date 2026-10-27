@@ -127,4 +127,17 @@ void quickSort_lomuto(int* src, size_t leftIdx, size_t rightIdx, std::function<b
 ******************************************************/
 void quickSort_hoare(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>());
 
+/******************************************************
+* @brife: 3路快速排序, 用于处理大量重复元素
+* @param src: 首地址
+* @param leftIdx: 待排序序列[左索引
+* @param rightIdx: 待排序序列右索引)
+* @param comp: 关系运算
+* @return: 
+* @note: [left, right) 左闭右开区间
+* @note: 选取区间首元素(或任意位置)作为基准
+* @note: 假设元素升序排序, 将数组划为为三部分: 小于基准, 等于基准, 大于基准, 等于基准的不需要参与后续递归
+******************************************************/
+void quickSort_3way(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>());
+
 #endif // !__SORTALGORITHMS_H__
