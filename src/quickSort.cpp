@@ -30,36 +30,28 @@ static size_t lomuto(int* src, size_t leftIdx, size_t rightIdx, std::function<bo
 static size_t hoare(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>())
 {
     int pivot = *(src + leftIdx);
-    size_t left = leftIdx - 1;
-    size_t right = rightIdx - 1;
-    while (left <= right)
+    
+    size_t i = leftIdx + 1;
+    size_t j = rightIdx - 1;
+
+    while (true)
     {
-        if (comp(*(src + left), pivot))
+        while (i <= j && comp(*(src + i), pivot))
         {
-            ++left;
-            continue;
+            ++i;
         }
-        else
+        while (j >= i && !comp(*(src + j), pivot))
         {
-            while (right > left)
-            {
-                if (comp(*(src + right), pivot))
-                {
-                    if (!comp(*(src + left), pivot))
-                    {
-                        swap(src + left, src + right);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                --right;
-            }
+            --j;
         }
+        if (j <= i)
+        {
+            break;
+        }
+        swap(src + i, src + j);
     }
-    swap(src + left, src + leftIdx);
-    return left;
+    swap(src + leftIdx, src + j);
+    return j;
 }
 
 void quickSort_lomuto(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp)
@@ -82,8 +74,14 @@ void quickSort_hoare(int* src, size_t leftIdx, size_t rightIdx, std::function<bo
         return;
     }
 
-    size_t mid = hoare(src, leftIdx, rightIdx, comp);
+    size_t pivotIdx = hoare(src, leftIdx, rightIdx, comp);
 
-    quickSort_hoare(src, leftIdx, mid, comp);
-    quickSort_hoare(src, mid + 1, rightIdx, comp);
+    // for (int i = leftIdx; i != rightIdx; ++i)
+    // {
+    //     std::cout << *(src + i) << "\t";
+    // }
+    // std::cout << std::endl;
+
+    quickSort_hoare(src, leftIdx, pivotIdx, comp);
+    quickSort_hoare(src, pivotIdx + 1, rightIdx, comp);
 }

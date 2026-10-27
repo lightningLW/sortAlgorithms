@@ -63,7 +63,7 @@ int main(void)
     // @ 快速排序
     int arr[13] = {5, 10, 0, 3, 10, 11, 4, 2, 3, 15, 8, 0, 6};
     printArr(arr, 13);
-    quickSort(arr, 0, 13, std::greater<int>());
+    quickSort_hoare(arr, 2, 10, std::greater<int>());
     printArr(arr, 13);
     // !@ 快速排序
 
