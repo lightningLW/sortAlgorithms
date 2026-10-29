@@ -120,43 +120,106 @@ int* sink(int* src, size_t len, size_t idx, std::function<bool (int, int)> comp 
     return src;
 }
 
+/*
+ * @brife: 下沉操作 构建堆
+ * @param src: 数组的首地址
+ * @param leftIdx: 左索引
+ * @param rightIdx: 右索引
+ * @param comp: 堆有序化的判断标准
+ * @return: 
+ * @note: [leftIdx, rightIdx)
+*/
+void buildHeap_sink(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>())
+{
+    size_t len = rightIdx - leftIdx;
+    if (len <= 1)
+    {
+        return;
+    }
+    size_t rootIdx = (len - 2) >> 1;
+    // flag = 0, 表示最后一个父节点只有一个孩子
+    // flag = 1, 表示最后一个父节点有两个孩子
+    size_t flag = len % 2;
+    if (flag == 0)
+    {
+        if (comp(*(src + 2 * rootIdx + 1), *(src + rootIdx)))
+        {
+            swap(src + 2 * rootIdx + 1, src + rootIdx);
+        }
+    }
+    else
+    {
+        if (comp(*(src + 2 * rootIdx + 1), *(src + 2 + rootIdx + 2)))
+        {
+            if (comp(*(src + 2 * rootIdx + 1), *(src + rootIdx)))
+            {
+                swap(src + 2 * rootIdx + 1, src + rootIdx);
+            }
+        }
+        else
+        {
+
+            if (comp(*(src + 2 * rootIdx + 2), *(src + rootIdx)))
+            {
+                swap(src + 2 * rootIdx + 2, src + rootIdx);
+            }
+        }
+    }
+
+    buildHeap_sink(src, leftIdx, rightIdx - flag - 1);
+}
+
+/*
+* @brife: 
+* @param
+* @return:
+* @note:
+*/
+void siftDown(int* src, size_t leftIdx, size_t rightIdx, size_t downIdx, std::function<bool (int, int)> comp = std::less<int>())
+{
+    size_t curIdx = downIdx;
+    while (true)
+    {
+        size_t lelfSonIdx = ((curIdx - leftIdx) << 1) + 1 + leftIdx;
+        size_t rightSonIdx = lelfSonIdx + 1;
+        size_t gargetIdx = curIdx;
+        // std::cout << std::endl;
+        // std::cout << curIdx << " " << lelfSonIdx << " " << rightSonIdx << std::endl;
+        if (lelfSonIdx < rightIdx && comp(*(src + lelfSonIdx), *(src + gargetIdx)))
+        {
+            gargetIdx = lelfSonIdx;
+        }
+        if (rightSonIdx < rightIdx && comp(*(src + rightSonIdx), *(src + gargetIdx)))
+        {
+            gargetIdx = rightSonIdx;
+        }
+        if (gargetIdx == curIdx)
+        {
+            break;
+        }
+        swap(src + curIdx, src + gargetIdx);
+        curIdx = gargetIdx;
+    }
+}
+
 void heapSort(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp)
 {
-    int tmpArr[rightIdx - leftIdx + 1];
-    memcpy(tmpArr + 1, src + leftIdx, sizeof(int) * (rightIdx - leftIdx));
-
-    // @ 逐一插入元素, 堆有序化的过程
-    for (int i = 1; i != rightIdx - leftIdx + 1; ++i)
+    size_t len = rightIdx - leftIdx;
+    if (len <= 1)
     {
-        swim(tmpArr, i - 1, *(tmpArr + i), comp);
-        // for (int j = 1; j != i + 1; ++j)
-        // {
-        //     std::cout << tmpArr[j] << " ";
-        // }
-        // std::cout << std::endl;
+        return;
     }
-    // !@ 逐一插入元素, 堆有序化的过程
-
-    // for (int i = 1; i != rightIdx - leftIdx + 1; ++i)
-    // {
-    //     std::cout << *(tmpArr + i) << "\t";
-    // }
+    //最后一个非叶子节点 len / 2 - 1;
+    for (size_t curIdx = leftIdx + (len / 2 - 1); curIdx != leftIdx - 1; --curIdx)
+    {
+        // std::cout << curIdx << " ";
+        siftDown(src, leftIdx, rightIdx, curIdx, comp);
+    }
     // std::cout << std::endl;
 
-    // @ 逐一删除/取堆顶元素, 即对数组进行排序
-    for (int i = 1; i != rightIdx - leftIdx + 1; ++i)
+    for (size_t i = leftIdx; i != rightIdx; ++i)
     {
-        *(src + i - 1 + leftIdx) = tmpArr[1];
-        // std::cout << tmpArr[1] << std::endl;
-        // std::cout << "len = " << rightIdx -leftIdx - i + 1 << std::endl;
-        sink(tmpArr, rightIdx - leftIdx - i + 1, 1, comp);
-        // for (int j = 1; j != rightIdx - leftIdx + 1; ++j)
-        // {
-        //     std::cout << *(tmpArr + j) << "\t";
-        // }
-        // std::cout << std::endl;
-        // *(src + i - 1) = tmpArr[1];
+        std::cout << src[i] << '\t';
     }
-    // !@ 逐一删除/取堆顶元素, 即对数组进行排序
-
+    std::cout << std::endl;
 }
