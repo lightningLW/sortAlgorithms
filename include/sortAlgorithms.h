@@ -140,4 +140,14 @@ void quickSort_hoare(int* src, size_t leftIdx, size_t rightIdx, std::function<bo
 ******************************************************/
 void quickSort_3way(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>());
 
+/******************************************************
+* @brife: 堆排序
+* @param src: 首地址
+* @param leftIdx: 待排序序列[左索引
+* @param rightIdx: 待排序序列右索引)
+* @param comp: 关系运算
+* @return: 
+* @note: [left, right) 左闭右开区间
+******************************************************/
+void heapSort(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>());
 #endif // !__SORTALGORITHMS_H__

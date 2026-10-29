@@ -31,6 +31,7 @@ add_executable(a.out
     ${PROJECT_SOURCE_DIR}/src/shellSort.cpp
     ${PROJECT_SOURCE_DIR}/src/mergeSort.cpp
     ${PROJECT_SOURCE_DIR}/src/quickSort.cpp
+    ${PROJECT_SOURCE_DIR}/src/heapSort.cpp
 )
 # !@指定 可执行文件
 

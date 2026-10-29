@@ -61,11 +61,18 @@ int main(void)
     // !@归并排序
 
     // @ 快速排序
+    // int arr[13] = {5, 10, 0, 3, 10, 11, 4, 2, 3, 15, 8, 0, 6};
+    // printArr(arr, 13);
+    // quickSort_3way(arr, 0, 13);
+    // printArr(arr, 13);
+    // !@ 快速排序
+
+    // @ 堆排序
     int arr[13] = {5, 10, 0, 3, 10, 11, 4, 2, 3, 15, 8, 0, 6};
     printArr(arr, 13);
-    quickSort_3way(arr, 0, 13);
+    heapSort(arr, 1, 12, std::less<int>());
     printArr(arr, 13);
-    // !@ 快速排序
+    // !@ 堆排序
 
     return 0;
 }
