@@ -121,59 +121,12 @@ int* sink(int* src, size_t len, size_t idx, std::function<bool (int, int)> comp 
 }
 
 /*
- * @brife: 下沉操作 构建堆
- * @param src: 数组的首地址
- * @param leftIdx: 左索引
- * @param rightIdx: 右索引
- * @param comp: 堆有序化的判断标准
- * @return: 
- * @note: [leftIdx, rightIdx)
-*/
-void buildHeap_sink(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int, int)> comp = std::less<int>())
-{
-    size_t len = rightIdx - leftIdx;
-    if (len <= 1)
-    {
-        return;
-    }
-    size_t rootIdx = (len - 2) >> 1;
-    // flag = 0, 表示最后一个父节点只有一个孩子
-    // flag = 1, 表示最后一个父节点有两个孩子
-    size_t flag = len % 2;
-    if (flag == 0)
-    {
-        if (comp(*(src + 2 * rootIdx + 1), *(src + rootIdx)))
-        {
-            swap(src + 2 * rootIdx + 1, src + rootIdx);
-        }
-    }
-    else
-    {
-        if (comp(*(src + 2 * rootIdx + 1), *(src + 2 + rootIdx + 2)))
-        {
-            if (comp(*(src + 2 * rootIdx + 1), *(src + rootIdx)))
-            {
-                swap(src + 2 * rootIdx + 1, src + rootIdx);
-            }
-        }
-        else
-        {
-
-            if (comp(*(src + 2 * rootIdx + 2), *(src + rootIdx)))
-            {
-                swap(src + 2 * rootIdx + 2, src + rootIdx);
-            }
-        }
-    }
-
-    buildHeap_sink(src, leftIdx, rightIdx - flag - 1);
-}
-
-/*
-* @brife: 
-* @param
+* @brife: 对downIdx索引的父节点进行下沉操作
+* @param leftIdx: 数组的左索引
+* @param rightIdx: 数组的右索引
+* @param downIdx: 所需要下沉的父节点的索引
 * @return:
-* @note:
+* @note: 因为堆排序是原地操作, 那么大根堆逐一将堆顶元素交换到堆尾, 就是升序排序.
 */
 void siftDown(int* src, size_t leftIdx, size_t rightIdx, size_t downIdx, std::function<bool (int, int)> comp = std::less<int>())
 {
@@ -185,14 +138,15 @@ void siftDown(int* src, size_t leftIdx, size_t rightIdx, size_t downIdx, std::fu
         size_t gargetIdx = curIdx;
         // std::cout << std::endl;
         // std::cout << curIdx << " " << lelfSonIdx << " " << rightSonIdx << std::endl;
-        if (lelfSonIdx < rightIdx && comp(*(src + lelfSonIdx), *(src + gargetIdx)))
+        if (lelfSonIdx < rightIdx && comp(*(src + gargetIdx), *(src + lelfSonIdx)))
         {
             gargetIdx = lelfSonIdx;
         }
-        if (rightSonIdx < rightIdx && comp(*(src + rightSonIdx), *(src + gargetIdx)))
+        if (rightSonIdx < rightIdx && comp(*(src + gargetIdx), *(src + rightSonIdx)))
         {
             gargetIdx = rightSonIdx;
         }
+        //如果最大/最小元素的索引还是当前父节点, 那么证明已经堆有序了
         if (gargetIdx == curIdx)
         {
             break;
@@ -212,14 +166,19 @@ void heapSort(int* src, size_t leftIdx, size_t rightIdx, std::function<bool (int
     //最后一个非叶子节点 len / 2 - 1;
     for (size_t curIdx = leftIdx + (len / 2 - 1); curIdx != leftIdx - 1; --curIdx)
     {
-        // std::cout << curIdx << " ";
         siftDown(src, leftIdx, rightIdx, curIdx, comp);
     }
+    // for (int i = leftIdx; i != rightIdx; ++i)
+    // {
+    //     std::cout << src[i] << "\t";
+    // }
     // std::cout << std::endl;
 
-    for (size_t i = leftIdx; i != rightIdx; ++i)
+    for (size_t i = 0; i != len; ++i)
     {
-        std::cout << src[i] << '\t';
+        //将堆顶元素交换到堆尾, 即堆尾元素已经排序了一个元素.
+        swap(src + leftIdx, src + (rightIdx - i - 1));
+        //堆的长度减1, 每次排序一个元素.
+        siftDown(src, leftIdx, rightIdx - i - 1, leftIdx, comp);
     }
-    std::cout << std::endl;
 }
