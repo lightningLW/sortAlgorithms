@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 * @file: quickSort.cpp
-* @brife: 快速排序实现文件
+* @brief: 快速排序实现文件
 * @date: 2026-10-24
 * @update: 2026-10-26
 * @author: lightningLW
@@ -20,7 +20,7 @@ static void mid2head(int* src, size_t leftIdx, size_t rightIdx)
 }
 
 /******************************************************
-* @brife: Lomuto分区法(单向扫描)
+* @brief: Lomuto分区法(单向扫描)
 * @param src: 首地址
 * @param leftIdx: 待排序序列[左索引
 * @param rightIdx: 待排序序列右索引)
@@ -49,7 +49,7 @@ static size_t lomuto(int* src, size_t leftIdx, size_t rightIdx, std::function<bo
 }
 
 /******************************************************
-* @brife: Hoare分区法(双向扫描)
+* @brief: Hoare分区法(双向扫描)
 * @param src: 首地址
 * @param leftIdx: 待排序序列[左索引
 * @param rightIdx: 待排序序列右索引)

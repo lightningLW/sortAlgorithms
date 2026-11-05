@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 * @file: heapSort.cpp
-* @brife: 堆排序实现文件
+* @brief: 堆排序实现文件
 * @date: 2026-10-29
 * @update: 
 * @author: lightningLW
@@ -10,7 +10,7 @@
 #include "sortAlgorithms.h"
 
 /*
- * @brife: 二叉堆的上浮操作
+ * @brief: 二叉堆的上浮操作
  * @param src: 数组的首地址
  * @param len: 已经有序的二叉堆
  * @param val: 上浮的值
@@ -48,7 +48,7 @@ int* swim(int* src, size_t len, int val, std::function<bool (int, int)> comp = s
 }
 
 /*
- * @brife: 二叉堆的下沉操作
+ * @brief: 二叉堆的下沉操作
  * @param src: 数组的首地址
  * @param len: 已经有序的二叉堆
  * @param idx: 删除/被替换元素的索引
@@ -121,7 +121,7 @@ int* sink(int* src, size_t len, size_t idx, std::function<bool (int, int)> comp 
 }
 
 /*
-* @brife: 对downIdx索引的父节点进行下沉操作
+* @brief: 对downIdx索引的父节点进行下沉操作
 * @param leftIdx: 数组的左索引
 * @param rightIdx: 数组的右索引
 * @param downIdx: 所需要下沉的父节点的索引

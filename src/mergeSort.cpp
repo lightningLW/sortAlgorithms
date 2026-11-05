@@ -1,6 +1,6 @@
 /***********************************************************************************************************************
 * @file: selectionSort.cpp
-* @brife: 归并排序实现文件
+* @brief: 归并排序实现文件
 * @date: 2026-10-20
 * @update: 2026-10-21
 * @author: lightningLW
@@ -10,7 +10,7 @@
 #include "sortAlgorithms.h"
 
 /******************************************************
-* @brife: 归并
+* @brief: 归并
 * @param src: 首地址
 * @param left: 待归并的数组的左index
 * @param right: 待归并数组的右边index
@@ -63,7 +63,7 @@ static void merge_(int* src, size_t left, size_t right, std::function<bool (int,
 }
 
 /******************************************************
-* @brife: 归并, 应用于 自底向上的归并排序
+* @brief: 归并, 应用于 自底向上的归并排序
 * @param src: 首地址
 * @param left: 待归并的数组的左index
 * @param right: 待归并数组的右边index
